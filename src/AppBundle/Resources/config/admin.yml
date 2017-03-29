@@ -1,0 +1,26 @@
+
+services:
+    app.admin.blogpost:
+        class: AppBundle\Admin\BlogPostAdmin
+        arguments: [~, AppBundle\Entity\BlogPost, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Blog", group: "Gestion des blogs", label_catalogue: "AppBundle"  }
+            
+    app.admin.user:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [~, AppBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Utilisateur", group: "Gestion des utilisateurs", label_catalogue: "AppBundle"  }
+        calls:
+            - [ setUserManager, ['@fos_user.user_manager']]
+            
+    app.admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [~, AppBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Catégorie", group: "Gestion des catégories", label_catalogue: "AppBundle", show_mosaic_button: true }
+        calls:
+            # - [ setTranslationDomain, [AppBundle]]
+            - [ addChild, ['@app.admin.blogpost']]
+    
+   
