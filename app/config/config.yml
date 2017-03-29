@@ -156,7 +156,7 @@ easy_admin:
         menu: 
             - { entity: 'User', icon: 'user'}
             - { entity: 'Group', icon: 'user'}
-            - { label: 'Déconnexion', route : 'fos_user_security_logout', icon: 'remove'}
+            - { label: 'Déconnexion', route : 'fos_user_security_logout'}
             # - { entity: 'News', icon: 'paperclip'}
             # - { entity: 'Category', icon: 'folder-open'}
             # - { entity: 'Product', icon: 'gift'}
