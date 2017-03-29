@@ -1,7 +1,8 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: services.yml }
+    # - { resource: services.yml }
+    - { resource: "@AppBundle/Resources/config/admin.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -65,6 +66,57 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
     
+#SonataAdminBundle   
+sonata_block:    
+    default_contexts: [cms]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+        sonata.block.service.text:
+        sonata.block.service.action:
+        sonata.block.service.rss:
+        
+sonata_admin:
+    show_mosaic_button: true
+    title:      HIGH TECH
+    # title_logo: bundles/app/images/images.jpg  
+    dashboard:
+        blocks:
+            # display a dashboard block
+            - { position: left, type: sonata.admin.block.admin_list }
+
+            # Customize this part to add new block configuration
+            - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Welcome to the Sonata Admin</h2> <p>This is a <code>sonata.block.service.text</code> from the Block Bundle, you can create and add new block in these area by configuring the <code>sonata_admin</code> section.</p> <br /> For instance, here a RSS feed parser (<code>sonata.block.service.rss</code>):"} }
+            - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds}}
+        groups:
+            sonata_page:            
+                label: Gestion des catégories
+                label_catalogue: AppBundle
+                items:
+                    - app.admin.category
+                    
+            sonata_page2:
+                label: Gestion des blogs
+                label_catalogue: AppBundle
+                items: 
+                    - app.admin.blogpost
+            sonata_page3:
+                label: Gestion des utilisateurs
+                label_catalogue: AppBundle
+                items: 
+                    - app.admin.user
+    templates:
+             # other configuration options
+                search:              SonataAdminBundle:Core:search.html.twig
+                search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
+           
+                    
+
+
+#FosUserBundle   
 fos_user:
     db_driver: orm
     firewall_name: main

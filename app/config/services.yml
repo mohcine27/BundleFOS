@@ -13,7 +13,12 @@ services:
         class: FOS\UserBundle\Form\Type\ChangePasswordFormType
         tags:
             - { name: form.type, alias: fos_user_change_password }
-    
+            
+    admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [~, AppBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category }
     
     # app.form.handler.registration:
         # class: AppBundle\Form\Handler\RegistrationFormHandler

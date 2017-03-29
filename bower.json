@@ -1,0 +1,17 @@
+{
+  "name": "bower",
+  "homepage": "https://github.com/mohcine27/BundleFOS",
+  "authors": [
+    "assou mohcine <assou.mohcine@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
